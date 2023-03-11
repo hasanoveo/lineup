@@ -29,7 +29,10 @@ app_license = "MIT"
 # page_js = {"page" : "public/js/file.js"}
 
 # include js in doctype views
-# doctype_js = {"doctype" : "public/js/doctype.js"}
+doctype_js = {
+	"Delivery Note" : "public/js/delivery_note.js",
+	"Sales Invoice": "public/js/sales_invoice.js"
+}
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
@@ -185,3 +188,9 @@ app_license = "MIT"
 # auth_hooks = [
 #	"lineup.auth.validate"
 # ]
+
+fixtures = [
+	"Custom Field",
+	"Property Setter",
+	"Print Format"
+]
