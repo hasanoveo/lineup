@@ -870,7 +870,7 @@
  {
   "absolute_value": 0,
   "align_labels_right": 0,
-  "css": ".delivery_note {\n    font-family:\"Calibri, sans-serif\";\n}\n.main-text {\n    font-size: 11px;\n    text-align: justify;\n}\n.table {\n    font-size: 11px;\n}\n.footer-text {\n    font-size: 11px;\n}",
+  "css": ".delivery_note {\n    font-family:\"Calibri, sans-serif\";\n}\n.main-text {\n    font-size: 14px;\n    text-align: justify;\n}\n.table {\n    font-size: 14px;\n}\n.footer-text {\n    font-size: 14px;\n}",
   "custom_format": 1,
   "default_print_language": "en",
   "disabled": 0,
@@ -886,7 +886,7 @@
   "margin_left": 15.0,
   "margin_right": 15.0,
   "margin_top": 15.0,
-  "modified": "2023-02-24 15:51:00.873127",
+  "modified": "2023-03-16 23:40:17.524209",
   "module": "Lineup",
   "name": "Main Delivery Note",
   "page_number": "Hide",
