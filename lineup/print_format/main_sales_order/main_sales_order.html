@@ -1,0 +1,78 @@
+<div style="margin-left: 20px !important; margin-right: 20px !important;" class="sales_order">
+    <div>
+    {% if doc.letter_head %}
+        <div class="letter-head">
+            {{ frappe.render_template(frappe.db.get_value("Letter Head", doc.letter_head, "content"), {"doc": doc}) }}
+        <div>
+    {% endif %}
+    </div>
+    <br>
+    <br>
+    <br>
+    <table style="border: none;" class="footer-text">
+        <tbody>
+            <tr>
+                <td style="text-align: left; width: 50%;">{{ frappe.db.get_value("Address", {"is_your_company_address": 1}, "address_line1") }}</th>
+                <td style="text-align: left; width: 25%;">T: {{ frappe.db.get_value("Address", {"is_your_company_address": 1}, "phone") }}</th>
+                <td style="text-align: left; width: 25%;">{{ frappe.db.get_value("Address", {"is_your_company_address": 1}, "email_id") }}</th>
+            </tr>
+            <tr>
+                <td>{{ frappe.db.get_value("Address", {"is_your_company_address": 1}, "city") }}, {{ frappe.db.get_value("Address", {"is_your_company_address": 1}, "pincode") }}</td>
+                <td>F: {{ frappe.db.get_value("Address", {"is_your_company_address": 1}, "fax") }}</td>
+                <td>{{ frappe.db.get_value("Company", doc.company, "website") }}</td>
+            </tr>
+            <tr>
+                <td>Kimə: {{ doc.customer }}</td>
+                <td>Telefon: {{ frappe.db.get_value("Address", doc.customer_address,"phone") }}</td>
+                <td>REF {{ doc.name }}</td>
+            </tr>
+            <tr>
+                <td>Address: {{ doc.address_display }}</td>
+                <td>Fax: {{ frappe.db.get_value("Address", doc.customer_address, "fax") }} <br> Mail: {{ frappe.db.get_value("Address", doc.customer_address,"email_id")}}</td>
+                <td>Tarix {{ frappe.utils.formatdate(doc.transaction_date,"dd.mm.yyyy")  }}</td>
+            </tr>
+            <tr>
+            	<td>Müəssisənin adı {{ doc.contact_display }}</td>
+            	<td></td>
+            	<td style="background-color: #f5f5f5;">Təklif Etibarlıdır {{ frappe.utils.formatdate(doc.delivery_date,"dd.mm.yyyy")  }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <br>
+    <br>
+    <div>
+        <table class="table">
+            <thead>
+                <tr class="active">
+                    <th style="border: 1px solid black !important;"><strong>№</strong></th>
+                    <th style="border: 1px solid black !important; text-align: center;"><strong>Açıqlama</strong></th>
+                    <th style="border: 1px solid black !important; text-align: center;"><strong>Miqdar</strong></th>
+                    <th style="border: 1px solid black !important; text-align: center;"><strong>Vahidin qiyməti</strong></th>
+                    <th style="border: 1px solid black !important; text-align: center;"><strong>Endirim</strong></th>
+                    <th style="border: 1px solid black !important; text-align: center;"><strong>Qiymət</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in doc.items %}
+                    <tr>
+                        <td style="width: 5%; border: 1px solid black !important;">{{ row.idx }}</td>
+                        <td style="width: 45%; border: 1px solid black !important;"><div style="border: 0px;">{{ row.description }}</div></td>
+                        <td style="width: 10%; text-align: center; border: 1px solid black !important;">{{ row.qty }}</td>
+                        <td style="width: 10%; text-align: center; border: 1px solid black !important;">{{ row.rate }}</td>
+                        <td style="width: 10%; text-align: center; border: 1px solid black !important;">{{ row.discount_amount }}</td>
+                        <td style="width: 20%; text-align: center; border: 1px solid black !important;">{{ row.amount }}</td>
+                    </tr>
+                {% endfor %}
+                <tr>
+                    <td style="border: none;"></td>
+                    <td style="border: none;"></td>
+                    <td style="border: none;"></td>
+                    <td style="border: none;"></td>
+                    <td style="border: none; text-align: center;"><b>TOTAL</b></td>
+                    <td style="border: 1px solid black !important; text-align: center;"> {{ doc.grand_total }} </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
