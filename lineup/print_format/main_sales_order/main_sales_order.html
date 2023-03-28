@@ -12,29 +12,31 @@
     <table style="border: none;" class="footer-text">
         <tbody>
             <tr>
-                <td style="text-align: left; width: 50%;">{{ frappe.db.get_value("Address", {"is_your_company_address": 1}, "address_line1") }}</th>
-                <td style="text-align: left; width: 25%;">T: {{ frappe.db.get_value("Address", {"is_your_company_address": 1}, "phone") }}</th>
-                <td style="text-align: left; width: 25%;">{{ frappe.db.get_value("Address", {"is_your_company_address": 1}, "email_id") }}</th>
+                <td style="text-align: left; width: 50%; background-color: lightgray;">{{ frappe.db.get_value("Address", {"is_your_company_address": 1}, "address_line1") }}</th>
+                <td style="text-align: left; width: 25%; background-color: lightgray;">T: {{ frappe.db.get_value("Address", {"is_your_company_address": 1}, "phone") }}</th>
+                <td style="text-align: left; width: 25%; background-color: lightgray;">{{ frappe.db.get_value("Address", {"is_your_company_address": 1}, "email_id") }}</th>
             </tr>
             <tr>
-                <td>{{ frappe.db.get_value("Address", {"is_your_company_address": 1}, "city") }}, {{ frappe.db.get_value("Address", {"is_your_company_address": 1}, "pincode") }}</td>
-                <td>F: {{ frappe.db.get_value("Address", {"is_your_company_address": 1}, "fax") }}</td>
-                <td>{{ frappe.db.get_value("Company", doc.company, "website") }}</td>
+                <td style="background-color: lightgray;">{{ frappe.db.get_value("Address", {"is_your_company_address": 1}, "city") }}, {{ frappe.db.get_value("Address", {"is_your_company_address": 1}, "pincode") }}</td>
+                <td style="background-color: lightgray;">F: {{ frappe.db.get_value("Address", {"is_your_company_address": 1}, "fax") }}</td>
+                <td style="background-color: lightgray;">{{ frappe.db.get_value("Company", doc.company, "website") }}</td>
             </tr>
             <tr>
                 <td>Kimə: {{ doc.customer }}</td>
-                <td>Telefon: {{ frappe.db.get_value("Address", doc.customer_address,"phone") }}</td>
+                <td>Telefon: {% if frappe.db.get_value("Address", doc.customer_address,"phone") %}{{ frappe.db.get_value("Address", doc.customer_address,"phone") }}{% endif %}</td>
                 <td>REF {{ doc.name }}</td>
             </tr>
             <tr>
-                <td>Address: {{ doc.address_display }}</td>
-                <td>Fax: {{ frappe.db.get_value("Address", doc.customer_address, "fax") }} <br> Mail: {{ frappe.db.get_value("Address", doc.customer_address,"email_id")}}</td>
+                <td>Address: {% if doc.address_display %} {{ doc.address_display }} {% endif %}</td>
+                
+                <td>Fax: {% if frappe.db.get_value("Address", doc.customer_address, "fax")%}{{ frappe.db.get_value("Address", doc.customer_address, "fax") }} {% endif %}<br>
+                Mail: {% if frappe.db.get_value("Address", doc.customer_address,"email_id") %}{{ frappe.db.get_value("Address", doc.customer_address,"email_id") }}{% endif %}</td>
                 <td>Tarix {{ frappe.utils.formatdate(doc.transaction_date,"dd.mm.yyyy")  }}</td>
             </tr>
             <tr>
             	<td>Müəssisənin adı {{ doc.contact_display }}</td>
             	<td></td>
-            	<td style="background-color: #f5f5f5;">Təklif Etibarlıdır {{ frappe.utils.formatdate(doc.delivery_date,"dd.mm.yyyy")  }}</td>
+            	<td style="background-color: #FF0000;">Təklif Etibarlıdır {{ frappe.utils.formatdate(doc.delivery_date,"dd.mm.yyyy")  }}</td>
             </tr>
         </tbody>
     </table>

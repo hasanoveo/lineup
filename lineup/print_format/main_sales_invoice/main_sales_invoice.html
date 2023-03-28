@@ -21,7 +21,7 @@
                 <thead>
                     <tr>
                         <th style="text-align: right; !important; width: 15%; font-weight: bold; background-color: #f5f5f5;">{{ _("Tarix:")}}</th>
-                        <th style="text-align: right !important; width: 85%; font-weight: bold; background-color: #f5f5f5;">{{ frappe.utils.format_date(doc.creation,"dd.mm.yyyy") }}</th>
+                        <th style="text-align: right !important; width: 85%; font-weight: bold; background-color: #f5f5f5;">{{ frappe.utils.format_date(doc.posting_date, "dd.mm.yyyy") }}</th>
                     </tr>
                 </thead>
             </table>
@@ -69,7 +69,13 @@
         </table>
     <br>
     <br>
-    <span>{{ "Ödəniləcək məbləğ (ENG):" }}{{ _(doc.base_in_words[3:]) }}</span>
+    <span>
+    {% if doc.base_in_words_aze %}
+        {{ "Ödəniləcək məbləğ: " }}{{ doc.base_in_words_aze}}
+    {% else %}
+        {{ "Ödəniləcək məbləğ (ENG): " }}{{ _(doc.base_in_words[3:]) }}
+    {% endif %}
+    </span>
     <br>
     <br>
     <br>

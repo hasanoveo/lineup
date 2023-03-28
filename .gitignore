@@ -6,3 +6,4 @@ tags
 lineup/docs/current
 node_modules/
 */__pycache__
+sftp-config.json
